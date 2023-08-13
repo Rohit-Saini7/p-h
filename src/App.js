@@ -51,9 +51,7 @@ const AppLayout = () => {
       `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${latitude}%2C${longitude}&lang=en-US&apiKey=${process.env.REACT_APP_HERE_API_KEY}`
     );
     const data = await response.json();
-    // console.log("getAddress", data);
-    // console.log(data?.items?.[0]?.address?.label);
-    setAddressGlobal(data?.items?.[0]?.address?.label);
+    setAddressGlobal(data.items.[0].address.label);
   };
 
   //get location code
@@ -87,25 +85,23 @@ const AppLayout = () => {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition, showError);
-      // console.log("here");
     } else {
-      console.log("Geolocation API not supported.");
+      console.error("Geolocation API not supported.");
       ipLookUp();
     }
   }, []);
 
   useEffect(() => {
-    if (locationGlobal?.coordinates?.latitude) {
+    if (locationGlobal.coordinates.latitude) {
       getAddress(
-        locationGlobal?.coordinates?.latitude,
-        locationGlobal?.coordinates?.longitude
+        locationGlobal.coordinates.latitude,
+        locationGlobal.coordinates.longitude
       );
     }
   }, [locationGlobal]);
 
   return (
     <Provider store={store}>
-      {/* {console.log("rendered app")} */}
       <div
         className={`m-auto w-[80vw] min-w-[80vw] min-h-screen flex flex-col box-border border`}
       >

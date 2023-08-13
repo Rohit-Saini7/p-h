@@ -3,12 +3,9 @@ import LocationContext from "./LocationContext";
 
 const useGetAddress = () => {
   const [address, setAddress] = useState("");
-  // console.log(location);
   const location = useContext(LocationContext);
-  // console.log(location?.coordinates?.latitude, location?.coordinates?.longitude);
 
   const getAddress = async (latitude, longitude) => {
-    // console.log("get address api called");
     const options = {
       method: "GET",
       headers: {
@@ -20,14 +17,13 @@ const useGetAddress = () => {
       `https://trueway-geocoding.p.rapidapi.com/ReverseGeocode?location=${latitude}%20%2C${longitude}&language=en`,
       options
     );
-    // console.log("useAddress->",latitude, longitude);
     const data = await response.json();
-    setAddress(data?.results?.[0]?.address);
+    setAddress(data.results.[0].address);
   };
 
   useEffect(() => {
-    getAddress(location?.coordinates?.latitude, location?.coordinates?.longitude);
-  }, [location?.coordinates?.latitude, location?.coordinates?.longitude]);
+    getAddress(location.coordinates.latitude, location.coordinates.longitude);
+  }, [location.coordinates.latitude, location.coordinates.longitude]);
 
   return address;
 };

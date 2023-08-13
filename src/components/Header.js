@@ -24,12 +24,11 @@ const Header = () => {
 
   return (
     <div className="flex justify-between items-center  shadow-lg z-10 w-full bg-slate-50 ">
-      {/* {console.log("header re-render")} */}
       <div className="flex items-center">
         <Logo />
         <span className="font-poppins text-xs text-orange-500">
-          {addressGlobal?.length > 50
-            ? `${addressGlobal?.slice(0, 50)}...`
+          {addressGlobal.length > 50
+            ? `${addressGlobal.slice(0, 50)}...`
             : addressGlobal}
         </span>
       </div>

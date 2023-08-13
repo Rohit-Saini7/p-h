@@ -11,7 +11,6 @@ const useClickOutside = (handler) => {
       ) {
         handler();
       }
-      // console.log(locationSideBarRef.current);
     };
 
     document.body.addEventListener("click", handleToggle);

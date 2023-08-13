@@ -11,31 +11,18 @@ const LocationSideBar = ({ isVisible, setToggle }) => {
   const [loading, setLoading] = useState(true);
 
   const getAutoCompletion = async (text) => {
-    // console.log("text", text);
     const suggestions = await fetch(
       `https://autocomplete.search.hereapi.com/v1/autocomplete?q=${text}&apiKey=${process.env.REACT_APP_HERE_API_KEY}&in=countryCode%3AIND`
     );
     const data = await suggestions.json();
-    setSuggestions(data?.items);
+    setSuggestions(data.items);
     setLoading(false);
   };
-
-  // const debounce = (callback, delay) => {
-  //   let timer;
-  //   console.log("clled");
-  //   return function (...args) {
-  //     console.log("inside");
-  //     clearTimeout(timer);
-  //     let context = this;
-  //     timer = setTimeout(() => callback.apply(context, args), delay);
-  //   };
-  // };
-  // const debounceSuggestion = useCallback(debounce(getAutoCompletion, 300), []);
 
   const debounceSearchText = useDebounce(searchText, 200);
 
   useEffect(() => {
-    debounceSearchText?.length > 2 && getAutoCompletion(debounceSearchText);
+    debounceSearchText.length > 2 && getAutoCompletion(debounceSearchText);
   }, [debounceSearchText]);
 
   return (

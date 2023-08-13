@@ -53,7 +53,6 @@ const Cart = () => {
       </div>
       <div className="border-b-2">
         {cartItems.map((item) => {
-          console.log(item);
           return (
             <div
               key={item.id}
@@ -61,9 +60,9 @@ const Cart = () => {
             >
               <img
                 className="w-12"
-                src={IMG__MENU_ITEM_CDN_URL + item?.imageId}
+                src={IMG__MENU_ITEM_CDN_URL + item.imageId}
                 alt=""
-                onError={(event) => (event.target.style.display = "block")}
+                onError={(e) => {e.target.style.display = "block";}}
               />
               <div className="w-60 ">{item.name}</div>
               <div className="flex justify-between font-poppins w-20 h-7 border bg-slate-50 text-black py-[2px] px-2">

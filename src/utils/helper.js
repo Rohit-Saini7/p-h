@@ -2,7 +2,6 @@ export function filterData(searchText, allRestaurants) {
   const filteredData = allRestaurants.filter((restaurant) =>
     restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
   );
-  // console.log(filteredData);
   return filteredData;
 }
 
@@ -11,7 +10,6 @@ export function getNumberFromString(cost) {
 
   //       To get integer value from string, use this code const str = '₹200 for two';
   //       const int = str.match(/\d+/g)
-  //       console.log(+int) // 200
 
   let int = cost.match(/\d+/g);
 

@@ -18,12 +18,6 @@ const RestaurantMenu = () => {
   const menuDetails =
     restaurant &&
     restaurant[restaurant.length - 1].groupedCard.cardGroupMap.REGULAR.cards;
-  // menuDetails &&
-  //   console.log(
-  //     menuDetails
-  //       .filter((el) => el.card.card["@type"].includes("ItemCategory"))
-  //       .map((el) => el.card.card)
-  //   );
 
   const [activeCategory, setActiveCategory] = useState("");
 
@@ -43,13 +37,10 @@ const RestaurantMenu = () => {
     return currentItem ? currentItem.quantity : 0;
   };
 
-  //  console.log(menuPageHeight);
   const handleClick = (e) => {
     if (e.target.tagName != "LI") return;
-    // console.log(e.target, e.target.innerText);
     let ele = e.target;
     let cartegoryLi = document.querySelectorAll(".category-name");
-    // console.log(Array.from(li).map(el => el.innerText));
     if (activeCategory !== ele.innerText) {
       setActiveCategory(ele.innerText);
       cartegoryLi.forEach((category) => {
@@ -77,7 +68,6 @@ const RestaurantMenu = () => {
   };
 
   const handleCategoryToggle = (e) => {
-    // console.log(e.target.tagName, e.target.parentNode);
     let element = e.target;
     if (
       e.target.tagName.toLowerCase() === "svg" ||
@@ -88,9 +78,7 @@ const RestaurantMenu = () => {
       svgTag.classList.toggle("rotate-180");
       let parent = element.closest(".category-heading");
       let nextSibling = parent.nextElementSibling;
-      // console.log(parent, nextSibling)
       if (nextSibling.classList.contains("items-wrapper")) {
-        // console.log(nextSibling);
         nextSibling.classList.toggle("hidden");
       }
     }
@@ -107,7 +95,7 @@ const RestaurantMenu = () => {
             <img
               loading="lazy"
               className="w-80 h-52 rounded-sm"
-              src={IMG_CDN_URL + restaurantDetails?.cloudinaryImageId}
+              src={IMG_CDN_URL + restaurantDetails.cloudinaryImageId}
               alt="restaurant dish image"
             />
             <div className="">
@@ -144,7 +132,6 @@ const RestaurantMenu = () => {
           {/* menu */}
           {/* new menu */}
           <div className=" new-menu  xl:pxx-[23rem] pl-10">
-            {/* {console.log("rerender")} */}
             <div className="header text-[26px] font-semibold border-b-gray-800  text-gray-800 w-full border-b pb-2 pl-7 font-poppins">
               Menu
             </div>
@@ -194,7 +181,7 @@ const RestaurantMenu = () => {
                           >
                             {category.title +
                               " (" +
-                              category.itemCards?.length +
+                              category.itemCards.length +
                               ")"}
                           </li>
                         );
@@ -251,7 +238,7 @@ const RestaurantMenu = () => {
                                               {item.card.info.price / 100}
                                             </div>
                                             <div className="text-[#666666] max-sm:mb-2 text-sm max-sm:text-sm ">
-                                              {item.card.info?.description}
+                                              {item.card.info.description}
                                             </div>
                                           </div>
                                           <div className="item-image-cart min-w-[10rem] flex flex-col justify-between items-center gap-3">
@@ -330,7 +317,7 @@ const RestaurantMenu = () => {
                                       &#8377; {item.card.info.price / 100}
                                     </div>
                                     <div className="text-[#666666] max-sm:mb-2 text-sm max-sm:text-sm ">
-                                      {item.card.info?.description}
+                                      {item.card.info.description}
                                     </div>
                                   </div>
                                   <div className="item-image-cart min-w-[10rem] flex flex-col justify-between items-center gap-3">

@@ -39,9 +39,8 @@ const useGetLocation = () => {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition, showError);
-      // console.log("here");
     } else {
-      console.log("Geolocation API not supported.");
+      console.error("Geolocation API not supported.");
       ipLookUp();
     }
   }, []);

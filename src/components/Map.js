@@ -2,31 +2,7 @@ import { useRef, useState, useLayoutEffect, useContext } from "react";
 import LocationContext from "../utils/LocationContext";
 import AddressContext from "../utils/AddressContext";
 
-// console.log("maps");
-
-// function loadScript(url) {
-//   const script = document.createElement("script");
-//   script.type = "text/javascript";
-//   script.src = url;
-//   script.charset = "utf-8";
-//   document.body.prepend(script);
-// }
-
-// function loadLink(url) {
-//   const link = document.createElement("link");
-//   link.rel = "stylesheet";
-//   link.type = "text/css";
-//   link.href = url;
-//   document.body.prepend(link);
-// }
-// loadScript("https://js.api.here.com/v3/3.1/mapsjs-core.js");
-// loadScript("https://js.api.here.com/v3/3.1/mapsjs-service.js");
-// loadScript("https://js.api.here.com/v3/3.1/mapsjs-mapevents.js");
-// loadScript("https://js.api.here.com/v3/3.1/mapsjs-ui.js");
-// loadLink("https://js.api.here.com/v3/3.1/mapsjs-ui.css");
-
 const Map = ({ location, address, setToggle }) => {
-  // console.log(location, address);
   const [newAddress, setNewAddress] = useState("");
   const [newLocation, setNewLocation] = useState({});
   const { locationGlobal, setLocationGlobal } = useContext(LocationContext);
@@ -41,7 +17,6 @@ const Map = ({ location, address, setToggle }) => {
    * the map sooner
    */
 
-  // let  newAddress = "no address assigned";
   useLayoutEffect(() => {
     setNewAddress(address);
     let marker;
@@ -54,8 +29,8 @@ const Map = ({ location, address, setToggle }) => {
     const defaultLayers = platform.createDefaultLayers();
     const hMap = new H.Map(mapRef.current, defaultLayers.vector.normal.map, {
       center: {
-        lat: location?.latitude,
-        lng: location?.longitude,
+        lat: location.latitude,
+        lng: location.longitude,
       },
       zoom: 14,
       pixelRatio: window.devicePixelRatio || 1,
@@ -77,15 +52,13 @@ const Map = ({ location, address, setToggle }) => {
         });
         marker.draggable = true;
         hMap.addObject(marker);
-        // console.log(marker?.a?.lat);
         service.reverseGeocode(
           {
             at: `${marker.a.lat},${marker.a.lng}`,
           },
           (result) => {
-            // console.log(result);
-            setNewAddress(result?.items?.[0]?.address?.label);
-            setNewLocation(result?.items?.[0].position);
+            setNewAddress(result.items.[0].address.label);
+            setNewLocation(result.items.[0].position);
           }
         );
       },
@@ -139,7 +112,6 @@ const Map = ({ location, address, setToggle }) => {
               pointer.viewportY - target["offset"].y
             )
           );
-          // console.log(marker);
 
           // Call the reverse geocode method with the geocoding parameters,
           // the callback and an error callback function (called if a
@@ -149,9 +121,8 @@ const Map = ({ location, address, setToggle }) => {
               at: `${marker.a.lat},${marker.a.lng}`,
             },
             (result) => {
-              // console.log(result);
-              setNewAddress(result?.items?.[0]?.address?.label);
-              setNewLocation(result?.items?.[0].position);
+              setNewAddress(result.items.[0].address.label);
+              setNewLocation(result.items.[0].position);
             },
             alert
           );
@@ -189,7 +160,6 @@ const Map = ({ location, address, setToggle }) => {
       <button
         className=" bg-slate-900 mt-4 p-2 text-white w-full"
         onClick={() => {
-          // console.log(newLocation);
           setLocationGlobal({
             loaded: true,
             coordinates: {
