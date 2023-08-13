@@ -12,7 +12,6 @@ export function getNumberFromString(cost) {
   //       const int = str.match(/\d+/g)
 
   let int = cost.match(/\d+/g);
-
   return +int;
 }
 
@@ -22,7 +21,6 @@ export function paginate (arr, size) {
     let idx = Math.floor(i / size)
     let page = acc[idx] || (acc[idx] = [])
     page.push(val)
-
     return acc
   }, []);
 }

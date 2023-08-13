@@ -5,19 +5,10 @@ const useClickOutside = (handler) => {
 
   useEffect(() => {
     const handleToggle = (event) => {
-      if (
-        domNode.current &&
-        !domNode.current.contains(event.target)
-      ) {
-        handler();
-      }
+      if (domNode.current && !domNode.current.contains(event.target)) handler();
     };
-
     document.body.addEventListener("click", handleToggle);
-
-    return () => {
-      document.body.removeEventListener("click", handleToggle);
-    };
+    return () => document.body.removeEventListener("click", handleToggle);
   }, []);
   return domNode;
 };

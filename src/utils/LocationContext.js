@@ -2,10 +2,7 @@ import { createContext } from "react";
 
 const LocationContext = createContext({
   loaded: false,
-  coordinates: {
-    latitude: "",
-    longitude: "",
-  },
+  coordinates: { latitude: "", longitude: "" },
 });
 LocationContext.displayName = "LocationContext";
 

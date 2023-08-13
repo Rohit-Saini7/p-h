@@ -13,12 +13,9 @@ const useGetAddress = () => {
         "X-RapidAPI-Host": "trueway-geocoding.p.rapidapi.com",
       },
     };
-    const response = await fetch(
-      `https://trueway-geocoding.p.rapidapi.com/ReverseGeocode?location=${latitude}%20%2C${longitude}&language=en`,
-      options
-    );
+    const response = await fetch(`https://trueway-geocoding.p.rapidapi.com/ReverseGeocode?location=${latitude}%20%2C${longitude}&language=en`, options);
     const data = await response.json();
-    setAddress(data.results.[0].address);
+    setAddress(data.results[0].address);
   };
 
   useEffect(() => {

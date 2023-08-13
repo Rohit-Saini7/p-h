@@ -9,32 +9,8 @@ import { Provider } from "react-redux";
 import store from "./utils/store";
 import CartPage from "./components/CartPage";
 import LocationContext from "./utils/LocationContext";
-import useGetLocation from "./utils/useGetLocation";
 import AddressContext from "./utils/AddressContext";
-import useGetAddress from "./utils/useGetAddress";
-// import RestaurantMenu from "./components/RestaurantMenu";
-// import Help from "./components/Help";
-// import Checkout from "./components/Checkout";
-// import Success from "./components/Success";
 
-// App Layout
-/**
- * Header
- *  - Logo
- *  - Nav Items(Right side)
- *  - Cart
- * Body
- *  - Search bar
- *  - Restaurant List
- *    - RestaurantCard
- *      - Image
- *      - Name
- *      - Rating
- *      - Cusines
- * Footer
- *  - Links
- *  - CopyRights
- */
 const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
 const Checkout = lazy(() => import("./components/Checkout"));
 const Success = lazy(() => import("./components/Success"));
@@ -47,11 +23,9 @@ const AppLayout = () => {
   const [addressGlobal, setAddressGlobal] = useState(null);
 
   const getAddress = async (latitude, longitude) => {
-    const response = await fetch(
-      `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${latitude}%2C${longitude}&lang=en-US&apiKey=${process.env.REACT_APP_HERE_API_KEY}`
-    );
+    const response = await fetch(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${latitude}%2C${longitude}&lang=en-US&apiKey=${process.env.REACT_APP_HERE_API_KEY}`);
     const data = await response.json();
-    setAddressGlobal(data.items.[0].address.label);
+    setAddressGlobal(data.items[0].address.label);
   };
 
   //get location code
@@ -102,9 +76,7 @@ const AppLayout = () => {
 
   return (
     <Provider store={store}>
-      <div
-        className={`m-auto w-[80vw] min-w-[80vw] min-h-screen flex flex-col box-border border`}
-      >
+      <div className={`m-auto w-[80vw] min-w-[80vw] min-h-screen flex flex-col box-border border`} >
         <AddressContext.Provider
           value={{
             addressGlobal: addressGlobal,

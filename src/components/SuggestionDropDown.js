@@ -23,8 +23,8 @@ const SuggestionDropDown = ({
     );
     const data = await response.json();
     setLocation({
-      latitude: data.items.[0].position.lat,
-      longitude: data.items.[0].position.lng,
+      latitude: data.items[0].position.lat,
+      longitude: data.items[0].position.lng,
     });
   };
 

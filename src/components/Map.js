@@ -57,8 +57,8 @@ const Map = ({ location, address, setToggle }) => {
             at: `${marker.a.lat},${marker.a.lng}`,
           },
           (result) => {
-            setNewAddress(result.items.[0].address.label);
-            setNewLocation(result.items.[0].position);
+            setNewAddress(result.items[0].address.label);
+            setNewLocation(result.items[0].position);
           }
         );
       },
@@ -121,8 +121,8 @@ const Map = ({ location, address, setToggle }) => {
               at: `${marker.a.lat},${marker.a.lng}`,
             },
             (result) => {
-              setNewAddress(result.items.[0].address.label);
-              setNewLocation(result.items.[0].position);
+              setNewAddress(result.items[0].address.label);
+              setNewLocation(result.items[0].position);
             },
             alert
           );
